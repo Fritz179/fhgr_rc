@@ -1,0 +1,20 @@
+STM32: cargo embed --chip STM32F401RE && screen /dev/ttyACM0 115200 => Ctrl+a & k
+ESP_32: cargo run --bin remote_esp32 --release
+
+Rust embedded:
+
+use --relesase so no debug info is included
+
+STM-32
+https://docs.rust-embedded.org/discovery/f3discovery/
+tty: cargo embed --chip STM32F401RE && screen /dev/ttyACM0 115200
+terminate: Ctrl+a & k
+
+TOF pinot https://cei-lab.github.io/ece3400-2017/tutorials/sensors/images/Pinout.svg
+
+ESP-32
+wokwi: https://wokwi.com/rust
+old hal: https://github.com/esp-rs/esp32-hal
+espup: https://docs.esp-rs.org/book/installation/riscv-and-xtensa.html
+normal: https://www.aliexpress.com/item/1005006422498371.html
+pinout: https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/08/ESP32-DOIT-DEVKIT-V1-Board-Pinout-36-GPIOs-updated.jpg

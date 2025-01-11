@@ -1,0 +1,21 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build Remote ESP32",
+            "type": "shell",
+            "command": "cargo",
+            "args": ["build", "--manifest-path", "remote_esp32/Cargo.toml", "--target", "xtensa-esp32-none-elf"],
+            "problemMatcher": ["$rustc"]
+        },
+        {
+            "label": "Build Car STM32",
+            "type": "shell",
+            "command": "cargo",
+            "args": ["build", "--release", "--manifest-path", "car_stm32/Cargo.toml"],
+            "problemMatcher": ["$rustc"]
+        }
+    ],
+    "rust-analyzer.check.allTargets": false
+}
+

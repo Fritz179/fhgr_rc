@@ -1,0 +1,17 @@
+[default]
+# probe.speed = 100
+
+[default.general]
+# connect_under_reset = true
+chip = "STM32F401RET6"
+log_level = "INFO"
+
+
+[default.flashing]
+enabled = true
+
+[default.rtt]
+enabled = true
+
+[default.gdb]
+enabled = false  # Optional: Disable GDB if not needed

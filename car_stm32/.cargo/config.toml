@@ -1,0 +1,11 @@
+[build]
+target = "thumbv7em-none-eabihf"
+
+[runner]
+runner = "cargo embed --chip STM32F401RETx"
+
+[target.thumbv7em-none-eabihf]
+linker = "rust-lld"
+rustflags = [
+    "-C", "link-arg=-Tlink.x",
+]
