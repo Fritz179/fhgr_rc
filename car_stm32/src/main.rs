@@ -4,12 +4,13 @@
 use cortex_m_rt::entry;
 use panic_halt as _; // Panic handler
 
-use stm32f4xx_hal as hal;
+use stm32f4xx_hal::{self as hal, hal::pwm};
 
 use hal::{
     pac,
     prelude::*,
     serial::{config::Config, Serial},
+    timer::Timer,
 };
 
 use core::fmt::Write;
@@ -26,6 +27,8 @@ fn main() -> ! {
 
     // Acquire the GPIOA peripheral
     let gpioa = dp.GPIOA.split();
+    let gpiob = dp.GPIOB.split();
+    let gpioc = dp.GPIOC.split();
 
     // Set up USART2 at PA2 (TX) and PA3 (RX)
     let tx_pin = gpioa.pa2.into_alternate();
@@ -40,6 +43,14 @@ fn main() -> ! {
     )
     .unwrap();
 
+    let (pwm_manager, (pwm_ch1, pwm_ch2, pwm_ch3, pwm_ch4)) = dp.TIM3.pwm_us(20.millis(), &clocks);
+    let mut pwm_c1 = pwm_ch1.with(gpioc.pc6);
+    pwm_c1.enable();
+
+    let max = pwm_c1.get_max_duty();
+    pwm_c1.set_duty(max / 10);
+
+
     let (mut tx, _rx) = serial.split();
 
     // Send "Hello, world!" over serial
@@ -50,7 +61,7 @@ fn main() -> ! {
     rprintln!("Hello, world!");
     let mut i = 0;
     loop {
-        rprintln!("LOOP {}", i);
+        rprintln!("LOOP {}", max);
         i += 1;
     }
 }

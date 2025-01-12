@@ -4,14 +4,12 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-# cortex-m = { version = "0.7",  features = ["critical-section-single-core"] }
+cortex-m = { version = "0.7",  features = ["critical-section-single-core"] }
 cortex-m-rt = "0.7"
 panic-halt = "1.0.0"
-stm32f4xx-hal = { version = "0.22.1", features = ["stm32f401"] }
+stm32f4xx-hal = { version = "0.22.1", features = ["stm32f401", "tim3"] }
 nb = "1.1.0"
-rtt-target = "0.6.1"
-
-# Motor driver
+rtt-target = "0.6.0"
 tb6612fng = "1.0.0"
 
 [profile.release]

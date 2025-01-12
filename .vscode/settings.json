@@ -1,4 +1,5 @@
 {
     "rust-analyzer.check.allTargets": false,
     "rust-analyzer.cargo.target": "thumbv7em-none-eabihf",
+    "cmake.sourceDirectory": "/home/struct/Projects/fhgr_rc/car_esp32/components/esp32-camera",
 }
