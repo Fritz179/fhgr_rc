@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Pontiac GTO</title>
+</head>
+<body>
+
+  <h1>Pontiac GTO 1967 control center</h1>
+
+  <!-- Speed -->
+  <div>
+    <label for="speed">Speed:</label>
+    <input class="slider" type="range" id="speed" name="speed" min="0" max="100" value="50" endpoint="updatespeed">
+    <span id="speedValue">50</span>
+  </div>
+
+  <!-- Steering -->
+  <div>
+    <label for="steering">Steering:</label>
+    <input class="slider" type="range" id="steering" name="steering" min="-45" max="45" value="0" endpoint="updateSteering">
+    <span id="steeringValue">0</span>
+  </div>
+
+  <!-- Headlight -->
+  <div>
+    <label for="Headlight">LHeadlight:</label>
+    <input class="checkbox" type="checkbox" id="Headlight" name="Headlight" endpoint="toggleHeadlight">
+  </div>
+
+  <script>
+    // Handle all sliders
+    const sliders = document.querySelectorAll('.slider');
+    sliders.forEach(slider => {
+      slider.addEventListener('input', event => {
+        const value = event.target.value;
+        const id = event.target.id;
+        const endpoint = event.target.getAttribute('endpoint');
+
+        // Update displayed value
+        const valueDisplay = document.getElementById(id + 'Value');
+        if (valueDisplay) {
+          valueDisplay.textContent = value;
+        }
+
+        // Send the slider value via fetch in the URL
+        fetch(`/${endpoint}/${value}`)
+          .catch(error => console.error(`Error updating ${id}:`, error));
+      });
+    });
+
+    // Handle all checkboxes
+    const checkboxes = document.querySelectorAll('.checkbox');
+    checkboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', event => {
+        const isChecked = event.target.checked;
+        const endpoint = event.target.getAttribute('endpoint');
+        const id = event.target.id;
+
+        // Send the checkbox state via fetch in the URL
+        fetch(`/${endpoint}/${isChecked}`)
+          .catch(error => console.error(`Error toggling ${id}:`, error));
+      });
+    });
+  </script>
+
+</body>
+</html>

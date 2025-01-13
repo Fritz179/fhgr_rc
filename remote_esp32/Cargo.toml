@@ -5,14 +5,13 @@ authors = ["Fritz 179 <fabrizio.cortesi179@gmail.com>"]
 edition = "2021"
 
 [dependencies]
-esp-hal = { version = "0.22.0", features = ["esp32"] }
-esp-backtrace = { version = "0.14.0", features = [
-    "esp32",
-    "panic-handler",
-    "exception-handler",
-    "println",
-] }
-esp-println = { version = "0.12.0", features = ["esp32"] }
+embedded-svc = "0.28.1"
+esp-idf-sys = "0.36.1"
+esp-idf-svc = "0.50.1"
+esp-idf-hal = "0.45.1"
+log = "0.4"
+anyhow = "1.0.95"
+
 [profile.dev]
 # Rust debug is too slow.
 # For debug builds always builds with some optimization

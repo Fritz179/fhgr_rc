@@ -4,13 +4,12 @@
 use cortex_m_rt::entry;
 use panic_halt as _; // Panic handler
 
-use stm32f4xx_hal::{self as hal, hal::pwm};
+use stm32f4xx_hal as hal;
 
 use hal::{
     pac,
     prelude::*,
     serial::{config::Config, Serial},
-    timer::Timer,
 };
 
 use core::fmt::Write;
